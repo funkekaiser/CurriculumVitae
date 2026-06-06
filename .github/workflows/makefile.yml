@@ -27,7 +27,7 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add Jonathan-Funke-Kaiser-CV.pdf
-          git diff --cached --quiet || git commit -m "Build cv.pdf"
+          git diff --cached --quiet || git commit -m "Build Jonathan-Funke-Kaiser-CV.pdf"
           git push
 
       - name: Push to website repo
