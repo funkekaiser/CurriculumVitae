@@ -7,17 +7,17 @@ LATEXMKFLAGS := -$(ENGINE) -interaction=nonstopmode -halt-on-error
 
 .PHONY: all clean distclean watch
 
-all: cv.pdf
+all: Jonathan-Funke-Kaiser-CV.pdf
 
-cv.pdf: cv.tex
-	$(LATEXMK) $(LATEXMKFLAGS) cv.tex
+Jonathan-Funke-Kaiser-CV.pdf: Jonathan-Funke-Kaiser-CV.tex
+	$(LATEXMK) $(LATEXMKFLAGS) Jonathan-Funke-Kaiser-CV.tex
 
-watch: cv.tex
-	$(LATEXMK) -pvc $(LATEXMKFLAGS) cv.tex
+watch: Jonathan-Funke-Kaiser-CV.tex
+	$(LATEXMK) -pvc $(LATEXMKFLAGS) Jonathan-Funke-Kaiser-CV.tex
 
 clean:
 	$(LATEXMK) -c
 
 distclean:
 	$(LATEXMK) -C
-	rm -f cv.pdf
+	rm -f Jonathan-Funke-Kaiser-CV.pdf
