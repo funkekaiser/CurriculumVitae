@@ -1,8 +1,4 @@
-# CV
-
-LaTeX source for Jonathan-Oliver Funke-Kaiser's curriculum vitae, based on the
-[Base Rover](https://github.com/subidit/rover-resume) résumé template by
-subidit (CC BY 4.0).
+# Curriculum Vitae
 
 ## Prerequisites
 
@@ -40,3 +36,9 @@ make ENGINE=xelatex
 
 - `cv.tex` — CV source
 - `Makefile` — build targets
+
+## Credits
+
+This CV is built on the [Rover Resume](https://github.com/<subidit>/<rover-resume>)
+template by Subidit, licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+The template has been modified.
