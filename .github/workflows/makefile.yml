@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'cv.tex'
+      - 'Jonathan-Funke-Kaiser-CV.tex'
       - 'Makefile'
 
 jobs:
@@ -19,14 +19,14 @@ jobs:
       - name: Install TeX
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: cv.tex
+          root_file: Jonathan-Funke-Kaiser-CV.tex
           latexmk_use_xelatex: false
 
       - name: Commit PDF to this repo
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add cv.pdf
+          git add Jonathan-Funke-Kaiser-CV.pdf
           git diff --cached --quiet || git commit -m "Build cv.pdf"
           git push
 
@@ -35,7 +35,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.CV_DEPLOY_TOKEN }}
         with:
-          source_file: cv.pdf
+          source_file: Jonathan-Funke-Kaiser-CV.pdf
           destination_repo: funkekaiser/funkekaiser-website
           destination_branch: main
           user_email: jonathan@funkekaiser.com
