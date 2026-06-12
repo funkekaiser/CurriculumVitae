@@ -1,0 +1,43 @@
+name: Build and release CV
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Jonathan-Funke-Kaiser-CV.tex'
+      - 'Makefile'
+      - '.github/workflows/build-cv.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: Jonathan-Funke-Kaiser-CV.tex
+
+      - name: Publish to rolling "latest" release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh release view latest > /dev/null 2>&1; then
+            gh release create latest --title "Latest CV" \
+              --notes "Rolling release — the asset below is always the most recent build of the CV."
+          fi
+          gh release upload latest Jonathan-Funke-Kaiser-CV.pdf --clobber
+
+      - name: Trigger website redeploy
+        env:
+          DEPLOY_HOOK: ${{ secrets.CV_DEPLOY_TOKEN }}
+        run: |
+          if [ -z "$DEPLOY_HOOK" ]; then
+            echo "CV_DEPLOY_TOKEN not set — skipping website redeploy."
+            exit 0
+          fi
+          curl -fsS -X POST "$DEPLOY_HOOK" > /dev/null
+          echo "Triggered Cloudflare Pages redeploy."
